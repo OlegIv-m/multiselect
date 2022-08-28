@@ -1,0 +1,136 @@
+@import "../../node_modules/bootstrap-icons/font/bootstrap-icons.css";
+
+$multiSelectLangWidth: 350px;
+
+
+
+.select-lang{
+    width: $multiSelectLangWidth;
+    
+    & .bi-chevron-down{
+        float: right;
+        margin-top: 2px;
+        margin-right: 5px;
+        position: relative;
+        right: 10px;
+        top: -30px;
+    }
+    & .select-input{
+        width: $multiSelectLangWidth;
+        box-shadow: 2px 2px 4px 5px rgb(201, 197, 197);
+        height: 2em;
+        border: 1px solid grey;
+        border-radius: 10px;
+        margin-bottom: 5px;
+        overflow-y: auto;
+        & .input-container{
+            width: $multiSelectLangWidth - 40px;
+        }
+        & .country-label {
+            margin-left: 2px;
+            padding-left: 3px;
+            border-radius: 8px;
+            background-color: lightgrey;
+            margin: 2px;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            display: inline-block;
+            & .bi-x {
+                padding: 2px;
+                border-radius: 16px;
+                height: 2px;
+                margin: 4px;
+                &:hover{
+                    background-color: grey;
+                }
+            }
+        }
+    }
+    & .multi{
+        box-shadow: 2px 3px 4px 5px rgb(201, 197, 197);
+        width: $multiSelectLangWidth;
+        visibility: hidden;
+        height: 200px;
+        overflow-y: auto;
+        background-color: white;
+        scrollbar-width: "thin";
+        position: fixed;
+        border-radius: 10px;
+        &.slide-open{
+            visibility: visible;
+            transform-origin: top center;
+            animation-name: openDropDown;
+            animation-duration: .5s;
+        }
+        &.slide-close {
+            visibility: visible;
+            transform-origin: top center;
+            animation-name: closeDropDown;
+            animation-duration: .5s;
+            animation-fill-mode: forwards;
+        }
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        & .bordered {
+            background-color: white;
+            border-radius: 5px;
+        }
+        & .bi-search {
+            top: -2px;
+            position: sticky;
+            display: inline;
+            padding-left: 10px;
+            padding-top: 10px;
+            left: 25px;
+            z-index: 120;
+        }
+        & .fi{
+            margin: 5px;
+            border-radius: 4px !important;
+        }
+        & input[type="text"] {
+            z-index: 100;
+            position: sticky;
+            top: 5px;
+            margin: 5px;
+            padding: 5px;
+            background-color: lightgrey;
+            border-radius: 5px;
+            text-indent: 30px;
+            border: 0px;
+            width: 82%;
+        }
+        & .one-line{
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 2px solid grey;
+            & .left {
+                margin-left: 5px;
+            }
+            & .right{
+                margin-right: 5px;
+            }
+        }
+    }
+}
+
+@keyframes openDropDown {
+    0% {
+        transform: scaleY(0)
+    }
+    
+    100% {
+        transform: scaleY(1)
+    }
+}
+
+@keyframes closeDropDown {
+    0% {
+        transform: scaleY(1)
+    }
+    
+    100% {
+        transform: scaleY(0)
+    }
+}
