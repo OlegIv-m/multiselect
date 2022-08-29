@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './css/multiselect.scss';
-// import App from './App';
 import MultiSelect from "./components/MultiSelect"
 import reportWebVitals from './reportWebVitals';
 

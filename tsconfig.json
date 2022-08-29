@@ -9,9 +9,14 @@
         "strictNullChecks": true,
         "esModuleInterop": true,
         "types": ["node"],
-        "resolveJsonModule": true
+        "resolveJsonModule": true,
+        "plugins": [{
+            "name": "typescript-plugin-css-modules",
+            // "options": {
+            //     "customMatcher": "\\.m\\.scss$"
+            // }
+        }]
         // "traceResolution": true
     },
-    "include": ["src/**/*", "src/static/optional.d.ts"],
-    // "files": ["globals.d.ts"]
+    "include": ["src/**/*", "src/static/optional.d.ts", "src/css/multiselect.d.ts", "src/Globals.d.ts"],
 }

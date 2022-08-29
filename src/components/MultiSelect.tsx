@@ -1,6 +1,8 @@
 import { Component } from "react";
 import "flag-icons/css/flag-icons.min.css"
 import country from "../resources/country.json"
+import styles from "../css/multiselect.module.scss"
+import "bootstrap-icons/font/bootstrap-icons.css"
 
 interface  countryInt  {
     "capital"?: string,
@@ -97,12 +99,12 @@ export default class MultiSelect extends Component<{multiSelect: boolean, showIc
 
     render(){
         return (
-            <div className="select-lang">
+            <div className={styles["selectLang"]}>
                 <label htmlFor="language">Язык {this.state.searchStr}</label>
-                <div className="select-input" id="language" >
-                    <div className="input-container">
+                <div className={styles["select-input"]} id="language" >
+                    <div className={styles["input-container"]}>
                     {this.state.selectedCountries.map((country) => {
-                        return (<span key={country.code} className="country-label">
+                        return (<span key={country.code} className={styles["country-label"]}>
                                     <span>{country.language}</span>
                                     <span className="bi-x" onClick={() => this.unselectCountry(country)}></span>
                                 </span>)
@@ -110,18 +112,18 @@ export default class MultiSelect extends Component<{multiSelect: boolean, showIc
                     </div>
                 </div>
                 
-                <span className="bi-chevron-down" onClick={this.toggleDropdown}></span>
-                { (<div className={ (this.state.dropdownOpened === null) ? "multi" : (this.state.dropdownOpened) ? "multi slide-open" : "multi slide-close"}>
+                <span className={`${styles["mi-chevron-down"]} bi-chevron-down`} onClick={this.toggleDropdown}></span>
+                { (<div className={ (this.state.dropdownOpened === null) ? (`${styles.multi}`) : (this.state.dropdownOpened) ? (`${styles.multi} ${styles["slide-open"]}`) : (`${styles.multi} ${styles["slide-close"]}`)}>
                         <div className="bi-search"></div>
                         <input type="text" placeholder="Поиск" onInput={this.getSearch} value={this.state.searchStr}></input>
                         {this.state.filteredItems.map((item) => {
                             return (
-                                <div  key={item.code} className="one-line">
-                                    <div className="left">
+                                <div  key={item.code} className={styles["one-line"]}>
+                                    <div className={styles.left}>
                                         {(this.props.showIcon) ? <span className={`fi fi-${item.code}`}></span> : null}
                                         <span>{item.language}</span>
                                     </div>
-                                    <input className="right" type="checkbox" onChange={(e) => this.selectCountry(e,item)} checked={this.state.selectedCountries.includes(item)}></input>
+                                    <input className={styles.right} type="checkbox" onChange={(e) => this.selectCountry(e,item)} checked={this.state.selectedCountries.includes(item)}></input>
                                 </div>
                             )
                         })}
