@@ -7,7 +7,7 @@ $multiSelectLangWidth: 350px;
 .selectLang{
     width: $multiSelectLangWidth;
     
-    & .mi-chevron-down{
+    & .miChevronDown{
         float: right;
         margin-top: 2px;
         margin-right: 5px;
@@ -15,18 +15,18 @@ $multiSelectLangWidth: 350px;
         right: 10px;
         top: -30px;
     }
-    & .select-input{
+    & .selectInput{
         width: $multiSelectLangWidth;
         box-shadow: 2px 2px 4px 5px rgb(201, 197, 197);
-        height: 2em;
+        min-height: 2em;
         border: 1px solid grey;
         border-radius: 10px;
         margin-bottom: 5px;
         overflow-y: auto;
-        & .input-container{
+        & .inputContainer{
             width: $multiSelectLangWidth - 40px;
         }
-        & .country-label {
+        & .countryLabel {
             margin-left: 2px;
             padding-left: 3px;
             border-radius: 8px;
@@ -56,13 +56,13 @@ $multiSelectLangWidth: 350px;
         scrollbar-width: "thin";
         position: fixed;
         border-radius: 10px;
-        &.slide-open{
+        &.slideOpen{
             visibility: visible;
             transform-origin: top center;
             animation-name: openDropDown;
             animation-duration: .5s;
         }
-        &.slide-close {
+        &.slideClose {
             visibility: visible;
             transform-origin: top center;
             animation-name: closeDropDown;
@@ -101,7 +101,7 @@ $multiSelectLangWidth: 350px;
             border: 0px;
             width: 82%;
         }
-        & .one-line{
+        & .oneLine{
             display: flex;
             justify-content: space-between;
             border-bottom: 2px solid grey;

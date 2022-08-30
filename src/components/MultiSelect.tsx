@@ -1,8 +1,11 @@
-import { Component } from "react";
+import { Component, useState } from "react";
 import "flag-icons/css/flag-icons.min.css"
 import country from "../resources/country.json"
-import styles from "../css/multiselect.module.scss"
+import styles from "./multiselect.module.scss"
 import "bootstrap-icons/font/bootstrap-icons.css"
+
+import SelectContainer from "./SelectContainer"
+import DropDown from "./DropDown"
 
 interface  countryInt  {
     "capital"?: string,
@@ -14,9 +17,9 @@ interface  countryInt  {
     "name": string,
     "language": string
 }
-
-export default class MultiSelect extends Component<{multiSelect: boolean, showIcon: boolean}, { showDropDown: boolean, searchStr: string, filteredItems: countryInt[], selectedCountries: countryInt[], dropdownOpened: boolean | null}>{
-    // private selectedLanguage: countryInt;
+ 
+export default class MultiSelect extends Component<{multiSelect: boolean, showIcon: boolean}, 
+                                                    {showDropDown: boolean, searchStr: string, filteredItems: countryInt[], selectedCountries: countryInt[], dropdownOpened: boolean | null}>{
     private items: countryInt[];
 
     constructor(props){
@@ -24,7 +27,6 @@ export default class MultiSelect extends Component<{multiSelect: boolean, showIc
         this.items = country.map((item) => { 
             return {
                 ...item,
-                // language: item.language.toLowerCase()
             };
         }).sort((countryA, countryB) => {
             return (countryA.language < countryB.language ? -1 : ((countryA.language < countryB.language) ? 1 : 0));
@@ -100,35 +102,20 @@ export default class MultiSelect extends Component<{multiSelect: boolean, showIc
     render(){
         return (
             <div className={styles["selectLang"]}>
-                <label htmlFor="language">Язык {this.state.searchStr}</label>
-                <div className={styles["select-input"]} id="language" >
-                    <div className={styles["input-container"]}>
-                    {this.state.selectedCountries.map((country) => {
-                        return (<span key={country.code} className={styles["country-label"]}>
-                                    <span>{country.language}</span>
-                                    <span className="bi-x" onClick={() => this.unselectCountry(country)}></span>
-                                </span>)
-                    })}
-                    </div>
-                </div>
-                
-                <span className={`${styles["mi-chevron-down"]} bi-chevron-down`} onClick={this.toggleDropdown}></span>
-                { (<div className={ (this.state.dropdownOpened === null) ? (`${styles.multi}`) : (this.state.dropdownOpened) ? (`${styles.multi} ${styles["slide-open"]}`) : (`${styles.multi} ${styles["slide-close"]}`)}>
-                        <div className="bi-search"></div>
-                        <input type="text" placeholder="Поиск" onInput={this.getSearch} value={this.state.searchStr}></input>
-                        {this.state.filteredItems.map((item) => {
-                            return (
-                                <div  key={item.code} className={styles["one-line"]}>
-                                    <div className={styles.left}>
-                                        {(this.props.showIcon) ? <span className={`fi fi-${item.code}`}></span> : null}
-                                        <span>{item.language}</span>
-                                    </div>
-                                    <input className={styles.right} type="checkbox" onChange={(e) => this.selectCountry(e,item)} checked={this.state.selectedCountries.includes(item)}></input>
-                                </div>
-                            )
-                        })}
-                    </div>)
-                }
+                <SelectContainer 
+                items={this.state.selectedCountries} 
+                searchStr={this.state.searchStr} 
+                unselectCountry={this.unselectCountry}/>
+                <span className={`${styles.miChevronDown} ${(this.state.dropdownOpened) ? "bi-chevron-up" : "bi-chevron-down"}`} onClick={this.toggleDropdown}></span>
+
+                <DropDown 
+                dropdownOpened={this.state.dropdownOpened} 
+                search={this.getSearch} 
+                searchStr={this.state.searchStr} 
+                items={this.state.filteredItems} 
+                showIcon={this.props.showIcon} 
+                selectItem={this.selectCountry} 
+                selectedCountries={this.state.selectedCountries}/>
             </div>
         )
     }
