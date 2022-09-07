@@ -12,6 +12,8 @@ export default function selectContainer(props) {
                                 </span>)
                     })}
                     </div>
+                    
+                    {props.children}
                 </div>
             </div>)
 }

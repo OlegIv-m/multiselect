@@ -22,22 +22,26 @@ export default function MultiSelectF(props){
     const items = country.sort((countryA, countryB) => {
             return (countryA.language < countryB.language ? -1 : ((countryA.language < countryB.language) ? 1 : 0));
         }
-    );
+    ); 
 
-    const [dropDown, showDropDown] = useState(false);
+    const [dropDown, showDropDown] = useState<boolean | null>(null);
     const [searchStr, setSearchStr] = useState("");
     const [filteredItems, setFilteredItems] = useState(items);
     const [selectedCountries, setSelectedCountries] = useState<countryInt[]>([]);
 
     return (
-        <div className={styles["selectLang"]}>
+        <div className={styles.selectLang}>
+            {/* <div className={styles.flexChevron}> */}
             <SelectContainer 
             items={selectedCountries} 
             searchStr={searchStr} 
             unselectCountry={(item: countryInt) => 
                 setSelectedCountries(selectedCountries.filter((testItem) => testItem.code !== item.code))
-            }/>
-            <span className={`${styles.miChevronDown} ${(dropDown) ? "bi-chevron-up" : "bi-chevron-down"}`} onClick={() => showDropDown(!dropDown)}></span>
+            }>
+                <span className={`${styles.miChevronDown} ${(dropDown) ? "bi-chevron-up" : "bi-chevron-down"}`} onClick={() => showDropDown(!dropDown)}></span>
+            </SelectContainer>
+{/*             
+            </div> */}
 
             <DropDown 
             dropdownOpened={dropDown} 

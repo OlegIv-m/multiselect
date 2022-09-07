@@ -1,28 +1,27 @@
 // @import "../../node_modules/bootstrap-icons/font/bootstrap-icons.css";
 
 $multiSelectLangWidth: 350px;
-
+$boxTagHeight: 2em;
 
 
 .selectLang{
     width: $multiSelectLangWidth;
-    
-    & .miChevronDown{
-        float: right;
-        margin-top: 2px;
-        margin-right: 5px;
-        position: relative;
-        right: 10px;
-        top: -30px;
+    & label {
+        font: bold;
     }
     & .selectInput{
+        display: flex;
+        align-items: center;
         width: $multiSelectLangWidth;
         box-shadow: 2px 2px 4px 5px rgb(201, 197, 197);
-        min-height: 2em;
+        min-height: $boxTagHeight;
         border: 1px solid grey;
         border-radius: 10px;
         margin-bottom: 5px;
         overflow-y: auto;
+        & .miChevronDown{
+            vertical-align: middle;
+        }
         & .inputContainer{
             width: $multiSelectLangWidth - 40px;
         }
@@ -82,7 +81,7 @@ $multiSelectLangWidth: 350px;
             display: inline;
             padding-left: 10px;
             padding-top: 10px;
-            left: 25px;
+            left: 10px;
             z-index: 120;
         }
         & :global(.fi){
@@ -93,23 +92,85 @@ $multiSelectLangWidth: 350px;
             z-index: 100;
             position: sticky;
             top: 5px;
-            margin: 5px;
+            margin-top: 10px;
+            margin-left: -10px;
+            right: 10px;
             padding: 5px;
-            background-color: lightgrey;
+            background-color: #eee;
             border-radius: 5px;
             text-indent: 30px;
             border: 0px;
-            width: 82%;
+            height: 30px;
+            width: 91%;
+            font-size: 1em;
         }
         & .oneLine{
             display: flex;
             justify-content: space-between;
-            border-bottom: 2px solid grey;
+            border-bottom: 2px solid lightgrey;
+            padding-top: 10px;
+            padding-bottom: 10px;
             & .left {
-                margin-left: 5px;
+                margin-left: 10px;
+                & span:first-child{
+                    border: 1px solid #eee;
+                }
+                & span:last-child{
+                    margin-left: 10px;
+                }
             }
             & .right{
-                margin-right: 5px;
+                display: block;
+                position: relative;
+                width: 25px;
+                font-size: 22px;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                &:hover span{
+                    background-color: #ccc;
+                }
+                & input {
+                    position: absolute;
+                    opacity: 0;
+                    cursor: pointer;
+                    height: 0;
+                    width: 0;
+
+                    &:checked ~ span:after {
+                        display: block;  
+                    }
+                    &:checked ~ span {
+                        background-color: #2f69e4;
+                        border: 2px solid grey; 
+                    }
+                }
+                & span{
+                    position: absolute;
+                    top: 0;
+                    right: 10px;
+                    height: 20px;
+                    width: 20px;
+                    border: 2px solid grey;
+                    border-radius: 4px;
+
+                    &:after{
+                        content: "";
+                        position: absolute;
+                        display: none;
+
+                        left: 6px;
+                        top: 2px;
+                        width: 5px;
+                        height: 10px;
+                        border: solid white;
+                        border-width: 0 3px 3px 0;
+                        -webkit-transform: rotate(45deg);
+                        -ms-transform: rotate(45deg);
+                        transform: rotate(45deg);
+                    }
+                }
             }
         }
     }

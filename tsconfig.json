@@ -18,5 +18,5 @@
         }]
         // "traceResolution": true
     },
-    "include": ["src/**/*", "src/static/optional.d.ts", "src/css/multiselect.d.ts", "src/Globals.d.ts"],
+    "include": ["src/**/*", "src/static/optional.d.ts", "src/Globals.d.ts"],
 }

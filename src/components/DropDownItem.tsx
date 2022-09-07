@@ -6,7 +6,10 @@ export default function DropDownItem(props){
                     {(props.showIcon) ? <span className={`fi fi-${props.item.code}`}></span> : null}
                     <span>{props.item.language}</span>
                 </div>
-                <input className={styles.right} type="checkbox" onChange={(e) => props.selectItem(e,props.item)} checked={props.selectedCountries.includes(props.item)}></input>
+                <label className={styles.right} >
+                    <input type="checkbox" onChange={(e) => props.selectItem(e,props.item)} checked={props.selectedCountries.includes(props.item)}></input>
+                    <span></span>
+                </label>
             </div>)
     
 }

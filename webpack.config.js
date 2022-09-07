@@ -1,7 +1,7 @@
 const path = require("path");
 
 module.exports = {
-    entry: ["./src/index.tsx", "./src/rest.ts"],
+    entry: ["./src/index.tsx"],
     resolve: {
         alias: {
             "@": path.resolve(__dirname, "src")
