@@ -8,7 +8,7 @@ export default function selectContainer(props) {
                     {props.items.map((country) => {
                         return (<span key={country.code} className={styles.countryLabel}>
                                     <span>{country.language}</span>
-                                    <span className="bi-x" onClick={() => props.unselectCountry(country)}></span>
+                                    <span className="bi-x-lg" onClick={() => props.unselectCountry(country)}></span>
                                 </span>)
                     })}
                     </div>

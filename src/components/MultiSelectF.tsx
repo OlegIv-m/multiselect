@@ -19,10 +19,12 @@ interface  countryInt  {
 }
  
 export default function MultiSelectF(props){
-    const items = country.sort((countryA, countryB) => {
-            return (countryA.language < countryB.language ? -1 : ((countryA.language < countryB.language) ? 1 : 0));
-        }
-    ); 
+    // const items = country.sort((countryA, countryB) => {
+    //         return (countryA.language < countryB.language ? -1 : ((countryA.language < countryB.language) ? 1 : 0));
+    //     }
+    // ); 
+    const items = country;
+
 
     const [dropDown, showDropDown] = useState<boolean | null>(null);
     const [searchStr, setSearchStr] = useState("");

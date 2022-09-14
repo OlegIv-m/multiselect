@@ -13,7 +13,7 @@ $boxTagHeight: 2em;
         display: flex;
         align-items: center;
         width: $multiSelectLangWidth;
-        box-shadow: 2px 2px 4px 5px rgb(201, 197, 197);
+        box-shadow: 2px 2px 20px 4px rgb(201, 197, 197);
         min-height: $boxTagHeight;
         border: 1px solid grey;
         border-radius: 10px;
@@ -24,37 +24,50 @@ $boxTagHeight: 2em;
         }
         & .inputContainer{
             width: $multiSelectLangWidth - 40px;
+            &:first-child{
+                padding-left: 6px;
+            }
         }
         & .countryLabel {
-            margin-left: 2px;
-            padding-left: 3px;
+            vertical-align: super;
+            font-size: 12px;
+            font-weight: bold;
+            // margin-left: 2px;
+            text-align: justify;
+            margin: 6px 2px;
+            // margin-right: 2px;
+            padding-left: 10px;
+            padding-right: 10px;
             border-radius: 8px;
-            background-color: lightgrey;
-            margin: 2px;
-            padding-top: 4px;
-            padding-bottom: 4px;
+            background-color: rgb(240, 240, 240);
+            padding-top: 5px;
+            padding-bottom: 5px;
             display: inline-block;
-            & :global(.bi-x) {
-                padding: 2px;
+            & :global(.bi-x-lg) {
+                margin-left: 14px;
                 border-radius: 16px;
-                height: 2px;
-                margin: 4px;
+                // height: 1px;
+                margin: 2px;
                 &:hover{
                     background-color: grey;
                 }
             }
+            & span:last-child {
+                margin-left: 6px;
+            }
         }
     }
     & .multi{
-        box-shadow: 2px 3px 4px 5px rgb(201, 197, 197);
+        box-shadow: 2px 3px 20px 4px rgb(201, 197, 197);
         width: $multiSelectLangWidth;
         visibility: hidden;
-        height: 200px;
+        height: 350px;
         overflow-y: auto;
         background-color: white;
         scrollbar-width: "thin";
         position: fixed;
         border-radius: 10px;
+        margin-top: 5px;
         &.slideOpen{
             visibility: visible;
             transform-origin: top center;
@@ -83,6 +96,8 @@ $boxTagHeight: 2em;
             padding-top: 10px;
             left: 10px;
             z-index: 120;
+            font-size: 15px;
+            color: #ccc;
         }
         & :global(.fi){
             margin: 5px;
@@ -103,6 +118,9 @@ $boxTagHeight: 2em;
             height: 30px;
             width: 91%;
             font-size: 1em;
+            &::placeholder{
+                color:#bbb;
+            }
         }
         & .oneLine{
             display: flex;
@@ -152,7 +170,7 @@ $boxTagHeight: 2em;
                     right: 10px;
                     height: 20px;
                     width: 20px;
-                    border: 2px solid grey;
+                    border: 2px solid #ccc;
                     border-radius: 4px;
 
                     &:after{
