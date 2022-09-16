@@ -1,9 +1,11 @@
 import styles from "./multiselect.module.scss"
+import {Lang} from "./Lang"
 
 export default function DropDownItem(props){
     return (<div className={styles.oneLine}>
                 <div className={styles.left}>
-                    {(props.showIcon) ? <span className={`fi fi-${props.item.code}`}></span> : null}
+                    {(props.showIcon) ? <Lang code={props.item.code}></Lang>  : null }
+                    {/* {(props.showIcon) ? <span className={`fi fi-${props.item.code}`}></span> : null} */}
                     <span>{props.item.language}</span>
                 </div>
                 <label className={styles.right} >
@@ -11,5 +13,4 @@ export default function DropDownItem(props){
                     <span></span>
                 </label>
             </div>)
-    
 }

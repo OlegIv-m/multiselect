@@ -1,4 +1,5 @@
 import styles from "./multiselect.module.scss"
+import { Cross } from "../resources/cross"
 
 export default function selectContainer(props) {
     return (<div>
@@ -8,7 +9,9 @@ export default function selectContainer(props) {
                     {props.items.map((country) => {
                         return (<span key={country.code} className={styles.countryLabel}>
                                     <span>{country.language}</span>
-                                    <span className="bi-x-lg" onClick={() => props.unselectCountry(country)}></span>
+                                    <span onClick={() => props.unselectCountry(country)}>
+                                        <Cross></Cross>
+                                    </span>
                                 </span>)
                     })}
                     </div>

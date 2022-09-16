@@ -1,4 +1,4 @@
-import { Component, useState } from "react";
+import { useState } from "react";
 import "flag-icons/css/flag-icons.min.css"
 import country from "../resources/country.json"
 import styles from "./multiselect.module.scss"
@@ -6,6 +6,7 @@ import "bootstrap-icons/font/bootstrap-icons.css"
 
 import SelectContainer from "./SelectContainer"
 import DropDown from "./DropDown"
+import { Arrow } from "../resources/arrow"
 
 interface  countryInt  {
     "capital"?: string,
@@ -24,29 +25,24 @@ export default function MultiSelectF(props){
     //     }
     // ); 
     const items = country;
-
-
-    const [dropDown, showDropDown] = useState<boolean | null>(null);
+    const [angle, setAngle] = useState<Number | null>(null);
     const [searchStr, setSearchStr] = useState("");
     const [filteredItems, setFilteredItems] = useState(items);
     const [selectedCountries, setSelectedCountries] = useState<countryInt[]>([]);
 
     return (
         <div className={styles.selectLang}>
-            {/* <div className={styles.flexChevron}> */}
             <SelectContainer 
             items={selectedCountries} 
             searchStr={searchStr} 
             unselectCountry={(item: countryInt) => 
                 setSelectedCountries(selectedCountries.filter((testItem) => testItem.code !== item.code))
             }>
-                <span className={`${styles.miChevronDown} ${(dropDown) ? "bi-chevron-up" : "bi-chevron-down"}`} onClick={() => showDropDown(!dropDown)}></span>
+                <Arrow angle={angle} click={() => setAngle((!angle) ? 180 : 0)}></Arrow>
             </SelectContainer>
-{/*             
-            </div> */}
 
             <DropDown 
-            dropdownOpened={dropDown} 
+            dropdownOpened={angle} 
             search={(e) => {
                 const searchStr = e.target.value.toString().toLocaleLowerCase();
                 setSearchStr(searchStr);
@@ -60,7 +56,10 @@ export default function MultiSelectF(props){
             showIcon={props.showIcon} 
             selectItem={(e, item: countryInt) => {
                 if(e.target.checked) {
-                    setSelectedCountries(selectedCountries.concat(item))
+                    if(props.multiSelect)
+                        setSelectedCountries(selectedCountries.concat(item))
+                    else 
+                        setSelectedCountries([item])
                 } else {
                     setSelectedCountries(selectedCountries.filter((testItem) => testItem.code !== item.code))
                 }
